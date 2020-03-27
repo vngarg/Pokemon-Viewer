@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:pokemon_app/Pokemon.dart';
+import 'package:pokemon_app/PokemonDetail.dart';
 
 void main() => runApp(MaterialApp(
       title: "Pokemon App",
@@ -56,28 +57,37 @@ class _HomePageState extends State<HomePage> {
                   .map((poke) => Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: InkWell(
-                          onTap: (){
-                            
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PokeDetail(
+                                          pokemon: poke,
+                                        )));
                           },
-                          child: Card(
-                            elevation: 3.0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Container(
-                                  height: 100.0,
-                                  width: 100.0,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(poke.img))),
-                                ),
-                                Text(
-                                  poke.name,
-                                  style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
+                          child: Hero(
+                            tag:poke.img,
+                            child: Card(
+                              elevation: 3.0,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Container(
+                                    height: 100.0,
+                                    width: 100.0,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(poke.img))),
+                                  ),
+                                  Text(
+                                    poke.name,
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
