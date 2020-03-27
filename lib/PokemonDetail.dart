@@ -56,7 +56,9 @@ class PokeDetail extends StatelessWidget {
                     Text('Next Evolution' , style: TextStyle(fontWeight: FontWeight.bold),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: pokemon.nextEvolution
+                      children: pokemon.nextEvolution == null
+                        ? <Widget>[Text("This is the final form")]
+                        : pokemon.nextEvolution
                           .map((n) => FilterChip(
                                 backgroundColor: Colors.green,
                                 label: Text(
